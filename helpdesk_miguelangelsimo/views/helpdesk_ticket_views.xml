@@ -4,7 +4,7 @@
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,pivot,graph,calendar,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -12,6 +12,7 @@
             </p>
         </field>
     </record>
+<!-- vista tipo tree-->
     <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket.tree</field>
         <field name="model">helpdesk.ticket</field>
@@ -26,6 +27,116 @@
             </tree>
         </field>
     </record>
+
+ <!-- vista tipo pivot-->
+    <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.pivot</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Tickets">
+                <field name="user_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+                <field name="color" invisible="1"/> <!-- por defecto aparecen todos los campos numericos del modelo, con esta opcion ponemos en invisible el campo deseado-->
+
+            </pivot>
+        </field>
+    </record>
+
+<!-- vista tipo Graph-->
+    <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.graph</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Tickets" type="pie">
+                <field name="user_id" type="row"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+
+            </graph>
+        </field>
+    </record>
+<!-- vista tipo Calendar-->
+    <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.calendar</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <calendar string="Tickets" create="0" mode="month" date_start="date" color="user_id" event_limit="5">
+                <field name="name"/>
+                <field name="user_id" avatar_field="image_128"/>
+            </calendar>
+
+        </field>
+    </record>
+
+<!-- vista tipo kanban-->
+    <record id="view_helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.hanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+           <kanban default_group_by="user_id"> <!--El default_group_by es para agrupar por defecto-->
+                <field name="name"/> <!-- definir las variables a utilizar-->
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} #{lost_ribbon ? 'oe_kanban_card_ribbon' : ''} oe_kanban_global_click oe_kanban_card d-flex flex-column">
+                            <div class="o_dropdown_kanban dropdown"><!-- clase para el menu y cambiar el color-->
+                                    <a class="dropdown-toggle o-no-caret btn" role="button" data-bs-toggle="dropdown" data-bs-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                    </div>
+                                </div>
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban"> <!-- clase para poder pinchar encima de la casillas-->
+                                <div class="oe_kanban_content flex-grow-1"><!-- clase para dar formato-->
+                                    Name: <field name="name"/><!-- mostrar variables definidas anteriormente-->
+                                    Date: <field name="date"/>
+                                    <br/>
+                                </div>
+                                <div class="oe_kanban_footer">
+                                        <div class="o_kanban_record_bottom">
+                                        <!--  <div class="oe_kanban_bottom_left">
+                                                <field name="priority" widget="priority" groups="base.group_user"/>
+                                                <field name="activity_ids" widget="kanban_activity"/>
+                                            </div>-->
+                                            <div class="oe_kanban_bottom_right">
+                                                <field name="user_id" widget="many2one_avatar_user"/>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                     </t>
+                 </templates>
+            </kanban>
+
+        </field>
+    </record>
+
+<!-- vista tipo search-->
+    <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.search</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search string="tickets">
+                <field name="name"/> <!--buscar por nombre-->
+                <field name="user_id"/> <!--buscar por id asignado-->
+                <filter string ="Assigned" name="filter_to_assigned" domain="[('assigned','=',True)]"/><!--filtrar por asignado-->
+                <filter string ="No date" name="filter_no_date" domain="[('date','=',False)]"/><!--filtrar por fecha-->
+                <filter string="Date" name="date" context="{'group_by':'date'}"/><!--agrupar por fecha-->
+                <filter string="User" name="user" context="{'group_by':'user_id'}"/><!--agrupar por usuario-->
+            </search>
+        </field>
+    </record>
+
+
+
+<!-- vista tipo formulario-->
    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket.form</field>
         <field name="model">helpdesk.ticket</field>
@@ -44,19 +155,40 @@
                         <group>
                             <field name="date"/>
                             <field name="date_limit"/>
+                            <field name="amount_time" widget="float_time"/> <!-- añadido campo para la vista pivot-->
                         </group>
                         <group>
                             <field name="user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Description" name="description">
                             <!-- <label for="description" string="Description"/> -->
+                            <!--<button string="update descripcion" name="update_description" type="object" class="btn-primary"/> primer opcion-->
+
                             <field name="description"/>
                         </page>
                         <page string="To Do" name="to_do">
                             <!-- <label for="actions_todo" string="To Do"/> -->
                             <field name="actions_todo"/>
+                        </page>
+                        <page string="Actions" name="actions">
+                            <button string="Set all as done" name="set_actions_as_done" type="object" class="btn-primary"/>   
+                            <field name="action_ids">
+                                <tree string="Actions">
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                               <form>
+                                    <button string="Set done" name="set_done" type="object" class="btn-primary"/>
+                                    <button string="Set todo" name="set_todo" type="object" class="btn-primary"/>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="state" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

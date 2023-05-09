@@ -7,7 +7,7 @@ class HelpdeskTicket(models.Model):
 
     #Secuencia
     sequence = fields.Integer(
-        required=True,
+        default=10,
         help="Secuencia para el orden de las incidencias."
     )
 
@@ -41,6 +41,12 @@ class HelpdeskTicket(models.Model):
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='Assigned to')
+    
+    color = fields.Integer('Color Index', default=0)
+
+    amount_time = fields.Float(
+        string='Amount of time'
+    )
 
     # Acciones a realizar (html)
     actions_todo = fields.Html()
@@ -56,4 +62,31 @@ class HelpdeskTicket(models.Model):
             ('canceled', 'Canceled'),
         ],
         default="new",
+    
     )
+    tag_ids = fields.Many2many(
+        comodel_name='helpdesk.ticket.tag',
+        # relation='helpdesk_ticket_tag_rel',
+        # column1='ticket_id',
+        # column2='tag_id',
+        string='Tags')
+    action_ids = fields.One2many(
+        comodel_name='helpdesk.ticket.action',
+        inverse_name='ticket_id',
+        string='Actions')
+       
+    def set_actions_as_done(self):
+        self.ensure_one()
+        self.action_ids.set_done()
+    
+   # def update_description(self):
+   #     self.ensure_one() #solo para un registro
+   #     self.description = "ok"
+    #def update_description(self):
+    #   for record in self:
+    #   self.description = "ok"
+
+   # def update_all_description(self):
+    #    self.ensure_one()
+    #    all_tickets = self.env['helpdesk.ticket'].search([])
+    #    all_ticket.update_description()

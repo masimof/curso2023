@@ -1,0 +1,273 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_miguelangelsimo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-08 08:57+0000\n"
+"PO-Revision-Date: 2023-05-08 08:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__action_ids
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__actions_todo
+msgid "Actions Todo"
+msgstr ""
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__assigned
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__canceled
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_menu_config
+msgid "Config"
+msgstr "Configuracion"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.actions.act_window,help:helpdesk_miguelangelsimo.helpdesk_ticket_action
+msgid "Create a new ticket"
+msgstr "Crear un nuevo ticket"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.actions.act_window,help:helpdesk_miguelangelsimo.helpdesk_ticket_tag_action
+msgid "Create a new ticket tag"
+msgstr "Crear un nuevo ticket tag"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__create_uid
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__create_uid
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__create_date
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__create_date
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__description
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__display_name
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__display_name
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__display_name
+msgid "Display Name"
+msgstr "Nombre del display"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket_action__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,help:helpdesk_miguelangelsimo.field_helpdesk_ticket__description
+msgid "Escribe detalladamente la incidencia y como replicarla"
+msgstr "Escribe detalladamente la incidencia y como replicarla"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.actions.act_window,name:helpdesk_miguelangelsimo.helpdesk_ticket_tag_action
+msgid "Heldpesk Tickets Tags"
+msgstr "Heldpesk Tickets Tags"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_menu
+msgid "Helpdesk"
+msgstr "Helpdesk"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model,name:helpdesk_miguelangelsimo.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Helpdesk Ticket"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model,name:helpdesk_miguelangelsimo.model_helpdesk_ticket_action
+msgid "Helpdesk Ticket Action"
+msgstr "Helpdesk Ticket Action"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model,name:helpdesk_miguelangelsimo.model_helpdesk_ticket_tag
+msgid "Helpdesk Ticket tag"
+msgstr "Helpdesk Ticket tag"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.actions.act_window,name:helpdesk_miguelangelsimo.helpdesk_ticket_action
+msgid "Helpdesk Tickets"
+msgstr "Helpdesk Tickets"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__id
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__id
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__in_process
+msgid "In Process"
+msgstr "En proceso"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket____last_update
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action____last_update
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag____last_update
+msgid "Last Modified on"
+msgstr "Última modificación"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__write_uid
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__write_uid
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__write_date
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__write_date
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__write_date
+msgid "Last Updated on"
+msgstr "Última actualización"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__date_limit
+msgid "Limit date & Time"
+msgstr "Limite de fecha y hora"
+
+#. module: helpdesk_miguelangelsimo
+#: model:res.groups,name:helpdesk_miguelangelsimo.res_group_helpdesk_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__name
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__name
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_tag__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__new
+msgid "New"
+msgstr "Nuevo"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket__state__resolved
+msgid "Resolved"
+msgstr "Resuelto"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,help:helpdesk_miguelangelsimo.field_helpdesk_ticket__name
+msgid "Resume en pocas palabras un titulo para la incidencia"
+msgstr "Resume en pocas palabras un titulo para la incidencia"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,help:helpdesk_miguelangelsimo.field_helpdesk_ticket__sequence
+msgid "Secuencia para el orden de las incidencias."
+msgstr "Secuencia para el orden de las incidencias"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "Set all as done"
+msgstr "Poner todo en hecho"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "Set done"
+msgstr "poner a hecho"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "Set todo"
+msgstr "Poner a hecho"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__state
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__state
+msgid "State"
+msgstr "Estado"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__tag_ids
+#: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_ticket_tag_open
+msgid "Tags"
+msgstr "Tags"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_tag_tree
+msgid "Ticket Tags"
+msgstr "Ticket Tags"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_ticket_open
+msgid "Tickets"
+msgstr "Tickets"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields.selection,name:helpdesk_miguelangelsimo.selection__helpdesk_ticket_action__state__todo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_form
+msgid "To Do"
+msgstr "Para hacer"
+
+#. module: helpdesk_miguelangelsimo
+#: model:res.groups,name:helpdesk_miguelangelsimo.res_group_helpdesk_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.module.category,name:helpdesk_miguelangelsimo.ir_module_category_helpdesk
+msgid "helpdesk"
+msgstr "helpdesk"
+
+#. module: helpdesk_miguelangelsimo
+#: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket_action__ticket_id
+msgid "ticket"
+msgstr "ticket"
+
+#. module: helpdesk_miguelangelsimo
+#: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_tree
+msgid "tickets"
+msgstr "tickets"
