@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import api, Command, fields, models, _
+from odoo.exceptions import UserError
 
 class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -90,3 +91,62 @@ class HelpdeskTicket(models.Model):
     #    self.ensure_one()
     #    all_tickets = self.env['helpdesk.ticket'].search([])
     #    all_ticket.update_description()
+
+    
+    
+    assigned = fields.Boolean(
+        compute='_compute_assigned', # Hacer que el campo assigned sea calculado,
+        search='_search_assigned',# Hacer que se pueda buscar con el atributo search y hacer que se pueda modificar de forma que si lo marco se actualice el usuario con el usuario conectado y si lo desmarco se limpie el campo del usuario.
+        inverse='_inverse_assigned',
+
+    )
+
+    @api.depends('user_id')
+    def _compute_assigned(self):
+        for record in self:
+            record.assigned = bool(record.user_id)
+    
+    def _search_assigned(self, operator, value):
+        if operator not in ('=', '!=') or not isinstance(value, bool):
+            raise UserError( ("Operation not supported"))
+        if operator == '=' and value == True:
+            operator = '!='
+            #value = false
+        else:
+            operator = '='
+            #value = false
+        return [('user_id', operator, False)] # false es value pero directamente asignado a false
+    
+    def _inverse_assigned(self):
+        for record in self:
+            if not record.assigned:
+                record.user_id = False
+            else:
+                record.user_id = self.env.user
+
+# hacer un campo calculado que indique, dentro de un ticket, la cantidad de tiquets asociados al mismo ususario.
+    tickets_count = fields.Integer(
+        compute='_compute_tickets_count',
+        string='Tickets count',
+    )
+
+    @api.depends('user_id')
+    def _compute_assigned(self):
+        ticket_obj = self.env['helpdesk.ticket']
+        for record in self:
+            tickets = ticket_obj.search([('user_id', '=', record.user_id.id)])
+            record.tickets_count = len(tickets)
+
+ # crear un campo nombre de etiqueta, y hacer un botón que cree la nueva etiqueta con ese nombre y lo asocie al ticket.
+    tag_name = fields.Char()
+
+    def create_tag(self):
+        self.ensure_one()
+       #self.write({'tag_ids': [(0,0, {'name': self.tag_name})]})#esta es la forma antigua de hacerlo antes de la version 15      
+        self.write({'tag_ids': [Command.create({'name': self.tag_name})]}) #esta es la forma de hacerlo a partir de la version 15
+    
+    def clear_tags(self):
+        self.ensure_one()
+        #self.write({'tag_ids': [(5,0,0)]})#esta es la forma antigua de hacerlo antes de la version 15 
+        tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')]) #
+        self.tag_ids = [Command.clear(),Command.set(tag_ids.ids)] #Esta es la foma actual de borrar y añador una nueva etiqueta llamada "otra"

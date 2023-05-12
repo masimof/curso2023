@@ -24,7 +24,7 @@ msgstr "Acciones"
 #. module: helpdesk_miguelangelsimo
 #: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__actions_todo
 msgid "Actions Todo"
-msgstr ""
+msgstr "Acciones para hacer"
 
 #. module: helpdesk_miguelangelsimo
 #: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__assigned
@@ -234,12 +234,12 @@ msgstr "Estado"
 #: model:ir.model.fields,field_description:helpdesk_miguelangelsimo.field_helpdesk_ticket__tag_ids
 #: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_ticket_tag_open
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiquetas"
 
 #. module: helpdesk_miguelangelsimo
 #: model_terms:ir.ui.view,arch_db:helpdesk_miguelangelsimo.view_helpdesk_ticket_tag_tree
 msgid "Ticket Tags"
-msgstr "Ticket Tags"
+msgstr "Ticket Etiquetas"
 
 #. module: helpdesk_miguelangelsimo
 #: model:ir.ui.menu,name:helpdesk_miguelangelsimo.helpdesk_ticket_open
