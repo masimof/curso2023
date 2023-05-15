@@ -161,6 +161,10 @@
                             <field name="assigned"/>
                             <field name="user_id"/>
                             <field name="tickets_count"/>
+                            <!-- <field name="person_id" options="{'no_create': True}"/>  no deja crear objetos nuevos -->
+                            <!--<field name="person_id" options="{'no_quick_create': True}"/>  Deja crear un elemto nuevo pero aparece una ventana-->
+                           <!-- <field name="person_id" options="{'no_open': True}"/>   no deja ir al objeto seleccionado-->
+                           <field name="person_id" options="{'no_quick_create':True, 'no_open': True}"/>  <!--Dos opciones juntas -->
                             <field name="tag_name"/>
                             <button string="Crear" name="create_tag" type="object"/>
                             <button string="Limpiar" name="clear_tags" type="object"/>
@@ -180,6 +184,9 @@
                         </page>
                         <page string="Actions" name="actions">
                             <button string="Set all as done" name="set_actions_as_done" type="object" class="btn-primary"/>   
+                            <!-- Vista embebida 1 -->
+                            <field name="action_ids" context="{'default_state':'done', 'tree_view_ref':'helpdesk_miguelangelsimo.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_miguelangelsimo.view_helpdesk_ticket_action_tree_simple'}"/>
+                            <!-- Vista enbebida 2
                             <field name="action_ids">
                                 <tree string="Actions">
                                     <field name="name"/>
@@ -193,7 +200,7 @@
                                         <field name="state" readonly="1"/>
                                     </group>
                                 </form>
-                            </field>
+                            </field> -->
                         </page>
                     </notebook>
                 </sheet>

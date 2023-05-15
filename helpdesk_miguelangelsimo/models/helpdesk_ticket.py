@@ -34,6 +34,10 @@ class HelpdeskTicket(models.Model):
     date_limit = fields.Datetime(
         string = 'Limit date & Time')
     
+    person_id = fields.Many2one(
+        comodel_name='res.partner',
+        domain=[('is_company', '=', False)],)
+    
     # Asignado (Verdadero o Falso)
     assigned = fields.Boolean(
         readonly=True,
@@ -67,9 +71,9 @@ class HelpdeskTicket(models.Model):
     )
     tag_ids = fields.Many2many(
         comodel_name='helpdesk.ticket.tag',
-        # relation='helpdesk_ticket_tag_rel',
-        # column1='ticket_id',
-        # column2='tag_id',
+        relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id',
         string='Tags')
     action_ids = fields.One2many(
         comodel_name='helpdesk.ticket.action',
