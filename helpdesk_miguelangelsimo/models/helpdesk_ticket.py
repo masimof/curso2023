@@ -1,5 +1,6 @@
 from odoo import api, Command, fields, models, _
 from odoo.exceptions import UserError
+from datetime import timedelta
 
 class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -32,15 +33,41 @@ class HelpdeskTicket(models.Model):
 
     # Fecha y hora limite
     date_limit = fields.Datetime(
-        string = 'Limit date & Time')
+        string = 'Limit date & Time',
+       # compute='_compute_date_limit', # Indicamos que el campo es calculado
+       # inverse='_inverse_date_limit',
+       # store=True #indicamos que el campo calculado se pueda guardar
+    )
+    # Si el campo date_limit es calculado y guardado para que al indicar la fecha ponga como fecha de vencimiento un día mas
+    # podemos utilizar api.depends.
+    # @api.depends('date') #Si el campo es calculado hay que poner el api.depends para indicar de que depende y lo que tiene que hacer
+    # def _compute_date_limit(self):
+    #     for record in self:
+    #         if record.date:
+    #             record.date_limit = record.date + timedelta(days=1)
+    #         else:
+    #             record.date_limit = False
+
+    # def _inverse_date_limit(self): # el inverse es si queremos cambiar tambien el campo del que dependemos primeramente
+    #     pass #No recalculamos nada, ponemos el pass para pasar
+    
+    # Añadir un onchange para que al indicar la fecha ponga como fecha de vencimiento un día mas
+    # Si utilizamos el onchange es mas limpio
+    @api.onchange('date')
+    def _onchange_date(self):
+       if self.date:
+           self.date_limit = self.date + timedelta(days=1)
+       else:
+           self.date_limit = False
+
     
     person_id = fields.Many2one(
         comodel_name='res.partner',
         domain=[('is_company', '=', False)],)
     
-    # Asignado (Verdadero o Falso)
+    # Asignado (Verdadero o Falso), que sea de solo lectura
     assigned = fields.Boolean(
-        readonly=True,
+        readonly=True, #Solo lectura
     )
 
     user_id = fields.Many2one(
@@ -52,6 +79,14 @@ class HelpdeskTicket(models.Model):
     amount_time = fields.Float(
         string='Amount of time'
     )
+    # Añadir una restricción para hacer que el campo time no sea menor que 0
+    @api.constrains('amount_time')
+    def _check_amount_time(self):
+       for record in self:
+           if record.amount_time < 0:
+               raise UserError(_("The amount of time can't be negative"))
+
+
 
     # Acciones a realizar (html)
     actions_todo = fields.Html()
