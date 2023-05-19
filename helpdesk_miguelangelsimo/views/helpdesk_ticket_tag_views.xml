@@ -7,6 +7,10 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                helpdesk_create_ticket_action
+                    <button string="Create Ticket" 
+                    name="%(helpdesk_miguelangelsimo.helpdesk_create_ticket_action)d" 
+                    type="action"/>
                     <group>
                         <field name="name"/>
                         <field name="ticket_ids"/>
