@@ -28,8 +28,13 @@ class HelpdeskTicket(models.Model):
         """
     )
 
+    @api.model
+    def _get_default_date(self): # funcion del default
+        return fields.Date.today()
     # Fecha
-    date = fields.Date()
+    date = fields.Date(
+        default=_get_default_date, #Asi se define el default
+    )
 
     # Fecha y hora limite
     date_limit = fields.Datetime(
@@ -182,10 +187,37 @@ class HelpdeskTicket(models.Model):
     def create_tag(self):
         self.ensure_one()
        #self.write({'tag_ids': [(0,0, {'name': self.tag_name})]})#esta es la forma antigua de hacerlo antes de la version 15      
-        self.write({'tag_ids': [Command.create({'name': self.tag_name})]}) #esta es la forma de hacerlo a partir de la version 15
+        #self.write({'tag_ids': [Command.create({'name': self.tag_name})]}) #esta es la forma de hacerlo a partir de la version 15
+
+        action = {
+            'name': _('helpdesk Tickets Tags'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'helpdesk.ticket.tag',
+        }
+        action['context'] = {
+            'default_name': self.tag_name,
+            'default_ticket_id': self.id,
+        }
+        action['view_mode'] = 'form'
+        action['target'] = 'new'
+        return action
     
+
     def clear_tags(self):
         self.ensure_one()
         #self.write({'tag_ids': [(5,0,0)]})#esta es la forma antigua de hacerlo antes de la version 15 
         tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')]) #
         self.tag_ids = [Command.clear(),Command.set(tag_ids.ids)] #Esta es la foma actual de borrar y añador una nueva etiqueta llamada "otra"
+
+
+    def get_related_action(self): #segunda opcion de los actions
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_miguelangelsimo.helpdesk_ticket_action_action")
+        action['domain'] = [('ticket_id','=',self.id)]
+        action['context'] = {'default_ticket_id': self.id}
+        return action
+
+    def get_assigned(self):
+        self.ensure_one()
+        self.state = 'assigned'
+        self.user_id = self.env.user

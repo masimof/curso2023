@@ -143,6 +143,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <!-- states= es para que solo aparezca el boton en el estado new
+                    gropus= es para que solo pueda ver el boton y  modificar el estado los miembros de este grupo se administradores-->
+                    <button name="get_assigned" 
+                    string="Assign to me" 
+                    type="object" 
+                    states="new"
+                    groups='helpdesk_miguelangelsimo.res_group_helpdesk_manager'/>
                     <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
                 </header>
                 <sheet>
@@ -184,7 +191,8 @@
                         </page>
                         <page string="Actions" name="actions">
                             <button string="Set all as done" name="set_actions_as_done" type="object" class="btn-primary"/>   
-                            <button string="Open related actions" name="%(helpdesk_miguelangelsimo.helpdesk_ticket_action_related_action)d" type="action"/>  
+                            <button string="Open related actions (type=action)" name="%(helpdesk_miguelangelsimo.helpdesk_ticket_action_related_action)d" type="action"/>  <!--Primera opcion basada en actions para ver diferentes vistas-->
+                            <button string="Open related actions (type=object)" name="get_related_action" type="object"/>  <!--Segunda opcion basada en objetos para ver diferentes vistas-->
                             <!-- Vista embebida 1 -->
                             <field name="action_ids" context="{'default_state':'done', 'tree_view_ref':'helpdesk_miguelangelsimo.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_miguelangelsimo.view_helpdesk_ticket_action_tree_simple'}"/>
                             <!-- Vista enbebida 2
